@@ -19,7 +19,9 @@ cd recipe-api
 poetry install
 poetry shell
 ```
+```commandline
 
+```
 ## Quickstart
 
 ```bash
