@@ -1,4 +1,4 @@
-name: CI
+ name: CI
 
 on:
   pull_request:
@@ -46,4 +46,12 @@ jobs:
           junit-path:
             pytest.xml
           show-diffcover: 'true'
+
+      - name: Review agent
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: poetry run python agent.py $GITHUB_TOKEN $REPOSITORY $PR_NUMBER $GOOGLE_API_KEY
 
