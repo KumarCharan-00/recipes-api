@@ -142,7 +142,7 @@ async def add_comment_gh(ctx: Context, pr_number: int) -> str:
     """posts comment in github under specified PR number"""
     pr = repo.get_pull(number=pr_number)
     state = await ctx.store.get("state")
-    pr.create_review(body=state["review_comment"])
+    pr.create_review(body=state["review_comment"], event="COMMENT")
     return "Comment posted in github Successfully"
 
 post_comment = FunctionTool.from_defaults(async_fn=add_comment_gh)
